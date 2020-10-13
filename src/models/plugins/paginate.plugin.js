@@ -42,11 +42,14 @@ const paginate = (schema) => {
       const [totalResults, results] = values;
       const totalPages = Math.ceil(totalResults / limit);
       const result = {
-        results,
-        page,
-        limit,
-        totalPages,
-        totalResults,
+        data: results,
+        metaData: {
+          page,
+          size: limit,
+          totalPages,
+          totalResults,
+          totalDataOnPage: results.length,
+        },
       };
       return Promise.resolve(result);
     });
